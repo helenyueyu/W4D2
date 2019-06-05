@@ -1,0 +1,47 @@
+<% if type == :new %>
+    <% action_url = cats_url %>
+    <% button_text = "Create kitty!" %>
+<% elsif type == :edit %>
+    <% action_url = cat_url(cat) %>
+    <% button_text = "Update kitty" %>
+<% end %>
+
+
+<form action="<%= action_url %>" method="POST">
+<% if type == :edit %> 
+  <input type="hidden" name="_method" value="PATCH">
+<%end%>
+  <label>Name: 
+    <input type="text" name="cat[name]" value="<%= cat.name %>"/>
+  </label>
+  <br>
+
+  <label>Color: 
+    <select name="cat[color]">
+      <option value="<%= cat.color %>" selected>-- select a color --</option>
+      <option value="orange">Orange</option>
+      <option value="brown">Brown</option>
+      <option value="white">White</option>
+      <option value="red">Red</option>
+    </select>
+  </label>
+   <br>
+
+  <label>Birth Date: 
+    <input type="date" name="cat[birth_date]" value="<%= cat.birth_date %>"/>
+  </label>
+   <br>
+
+  <label>Sex:
+    <% if cat.sex == "M" %> 
+    <label>M<input type="radio" name="cat[sex]" value="M" checked/></label>
+    <label>F<input type="radio" name="cat[sex]" value="F"/></label>
+    <% else %>
+    <label>M<input type="radio" name="cat[sex]" value="M"/></label>
+    <label>F<input type="radio" name="cat[sex]" value="F" checked/></label>
+    <% end %>
+  </label>
+   <br>
+
+  <input type="submit" value="<%= button_text%>"/>
+</form>

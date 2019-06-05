@@ -1,4 +1,8 @@
-<form action="<%= cats_url %>" method="POST">
+<%= render "form", cat: @cat, type: :new %>
+
+
+
+<!-- <form action="<%= cats_url %>" method="POST">
   <label>Name: 
     <input type="text" name="cat[name]" value=""/>
   </label>
